@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: white;
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &::placeholder {
+        color: #9ca3af;
+    }
+
+    // Размеры
+    &--sm {
+        padding: 6px 12px;
+        height: 32px;
+    }
+
+    &--md {
+        padding: 8px 12px;
+        height: 36px;
+    }
+
+    &--lg {
+        padding: 12px 16px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    // Варианты
+    &--default {
+        // Базовые стили уже определены выше
+    }
+
+    &--filled {
+        background-color: #f9fafb;
+        border-color: #e5e7eb;
+
+        &:focus {
+            background-color: white;
+        }
+    }
+
+    &--outlined {
+        background-color: transparent;
+        border-width: 2px;
+    }
+
+    // Состояния
+    &--error {
+        border-color: #ef4444;
+
+        &:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+    }
+
+    &--disabled {
+        background-color: #f3f4f6;
+        color: #9ca3af;
+        cursor: not-allowed;
+
+        &:focus {
+            border-color: #d1d5db;
+            box-shadow: none;
+        }
+    }
+
+    // Иконки
+    &--with-left-icon {
+        padding-left: 40px;
+    }
+
+    &--with-right-icon {
+        padding-right: 40px;
+    }
+}
+
+.leftIcon,
+.rightIcon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #6b7280;
+    pointer-events: none;
+}
+
+.leftIcon {
+    left: 12px;
+}
+
+.rightIcon {
+    right: 12px;
+}
+
+.helperText {
+    font-size: 12px;
+    color: #6b7280;
+
+    &.error {
+        color: #ef4444;
+    }
+}

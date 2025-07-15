@@ -1,0 +1,59 @@
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+        border-color: #9ca3af;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+}
+
+.value {
+    font-size: 14px;
+    color: #374151;
+}
+
+.icon {
+    font-size: 12px;
+    color: #6b7280;
+    transition: transform 0.2s ease;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 16px;
+}
+
+.placeholder {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}

@@ -1,0 +1,94 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 24px;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+
+    &:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+}
+
+.title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.userMenu {
+    position: relative;
+}
+
+.userButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #f3f4f6;
+    }
+
+    &:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+}
+
+.userAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #f3f4f6;
+    border-radius: 50%;
+    color: #6b7280;
+}
+
+.userName {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}

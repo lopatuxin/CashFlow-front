@@ -1,0 +1,64 @@
+.container {
+    width: 100%;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 8px 40px 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &::placeholder {
+        color: #9ca3af;
+    }
+}
+
+.clearButton {
+    position: absolute;
+    right: 40px;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1;
+
+    &:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+}
+
+.searchButton {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+}

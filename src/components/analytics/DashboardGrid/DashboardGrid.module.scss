@@ -1,0 +1,22 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+.item {
+    min-height: 200px;
+
+    &--small {
+        grid-column: span 1;
+    }
+
+    &--medium {
+        grid-column: span 2;
+    }
+
+    &--large {
+        grid-column: span 3;
+    }
+}

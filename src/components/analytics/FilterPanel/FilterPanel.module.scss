@@ -1,0 +1,40 @@
+.container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.input {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-size: 14px;
+}
