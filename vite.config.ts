@@ -1,5 +1,5 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,12 +11,12 @@ export default defineConfig({
       '@pages': '/src/pages',
       '@services': '/src/services',
       '@types': '/src/types',
-      '@utils': '/src/utils'
-    }
+      '@utils': '/src/utils',
+    },
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
   },
   build: {
     outDir: 'dist',
@@ -24,9 +24,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom']
-        }
-      }
-    }
-  }
-})
+          vendor: ['react', 'react-dom'],
+        },
+      },
+    },
+  },
+});
