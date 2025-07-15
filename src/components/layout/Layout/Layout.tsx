@@ -1,53 +1,50 @@
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { Header } from '../Header';
-import { Sidebar, SidebarItem } from '../Sidebar';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Layout.module.scss';
 
-export interface LayoutProps {
+interface LayoutProps {
     children: React.ReactNode;
-    sidebarItems?: SidebarItem[];
-    title?: string;
-    className?: string;
 }
 
-export const Layout: React.FC<LayoutProps> = ({
-    children,
-    sidebarItems = [],
-    title,
-    className,
-}) => {
-    const [sidebarOpen, setSidebarOpen] = useState(true);
-    const [activeItem, setActiveItem] = useState<string>();
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const location = useLocation();
 
-    const handleMenuToggle = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
-
-    const handleSidebarItemClick = (item: SidebarItem) => {
-        setActiveItem(item.id);
-        item.onClick?.();
-    };
+    const isActive = (path: string) => location.pathname === path;
 
     return (
-        <div className={clsx(styles.layout, className)}>
-            <Header
-                title={title}
-                onMenuToggle={handleMenuToggle}
-                className={styles.header}
-            />
-            <div className={styles.content}>
-                <Sidebar
-                    items={sidebarItems}
-                    isOpen={sidebarOpen}
-                    activeItem={activeItem}
-                    onItemClick={handleSidebarItemClick}
-                    className={styles.sidebar}
-                />
-                <main className={styles.main}>
-                    {children}
-                </main>
-            </div>
+        <div className={styles.layout}>
+            <header className={styles.header}>
+                <h1>Analytics Dashboard</h1>
+                <nav className={styles.nav}>
+                    <Link
+                        to="/dashboard"
+                        className={`${styles.navLink} ${isActive('/dashboard') ? styles.active : ''}`}
+                    >
+                        Дашборд
+                    </Link>
+                    <Link
+                        to="/analytics"
+                        className={`${styles.navLink} ${isActive('/analytics') ? styles.active : ''}`}
+                    >
+                        Аналитика
+                    </Link>
+                    <Link
+                        to="/reports"
+                        className={`${styles.navLink} ${isActive('/reports') ? styles.active : ''}`}
+                    >
+                        Отчеты
+                    </Link>
+                    <Link
+                        to="/settings"
+                        className={`${styles.navLink} ${isActive('/settings') ? styles.active : ''}`}
+                    >
+                        Настройки
+                    </Link>
+                </nav>
+            </header>
+            <main className={styles.main}>
+                {children}
+            </main>
         </div>
     );
 };
