@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Header } from '../Header';
+import { NavigationItem, Notification, QuickAction } from '../Header/Header.types';
 import styles from './Layout.module.scss';
 
 interface LayoutProps {
@@ -9,39 +11,26 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
 
-    const isActive = (path: string) => location.pathname === path;
+    const handleNavigationClick = (item: NavigationItem) => {
+        // Здесь можно добавить навигацию через React Router
+        console.log(`Navigate to: ${item.path}`);
+    };
+
+    const handleNotificationClick = (notification: Notification) => {
+        console.log('Notification clicked:', notification);
+    };
+
+    const handleQuickAction = (action: QuickAction) => {
+        console.log('Quick action:', action);
+    };
 
     return (
         <div className={styles.layout}>
-            <header className={styles.header}>
-                <h1>Analytics Dashboard</h1>
-                <nav className={styles.nav}>
-                    <Link
-                        to="/dashboard"
-                        className={`${styles.navLink} ${isActive('/dashboard') ? styles.active : ''}`}
-                    >
-                        Дашборд
-                    </Link>
-                    <Link
-                        to="/analytics"
-                        className={`${styles.navLink} ${isActive('/analytics') ? styles.active : ''}`}
-                    >
-                        Аналитика
-                    </Link>
-                    <Link
-                        to="/reports"
-                        className={`${styles.navLink} ${isActive('/reports') ? styles.active : ''}`}
-                    >
-                        Отчеты
-                    </Link>
-                    <Link
-                        to="/settings"
-                        className={`${styles.navLink} ${isActive('/settings') ? styles.active : ''}`}
-                    >
-                        Настройки
-                    </Link>
-                </nav>
-            </header>
+            <Header
+                onNavigationClick={handleNavigationClick}
+                onNotificationClick={handleNotificationClick}
+                onQuickAction={handleQuickAction}
+            />
             <main className={styles.main}>
                 {children}
             </main>

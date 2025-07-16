@@ -1,6 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { StoreTest } from './components/common/StoreTest';
-import { UtilsTest } from './components/common/UtilsTest';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Analytics } from './pages/Analytics';
 import { Dashboard } from './pages/Dashboard';
@@ -10,20 +8,18 @@ import { Settings } from './pages/Settings';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/test" element={<StoreTest />} />
-          <Route path="/utils" element={<UtilsTest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
-    </BrowserRouter>
+    </Router>
   );
 }
 
