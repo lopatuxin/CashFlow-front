@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '../Header';
 import { NavigationItem, Notification, QuickAction } from '../Header/Header.types';
+import { Sidebar } from '../Sidebar';
 import styles from './Layout.module.scss';
 
 interface LayoutProps {
@@ -10,9 +11,13 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+
+    const handleSidebarToggle = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
 
     const handleNavigationClick = (item: NavigationItem) => {
-        // Здесь можно добавить навигацию через React Router
         console.log(`Navigate to: ${item.path}`);
     };
 
@@ -31,9 +36,34 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 onNotificationClick={handleNotificationClick}
                 onQuickAction={handleQuickAction}
             />
-            <main className={styles.main}>
-                {children}
-            </main>
+            <div className={styles.content}>
+                <Sidebar
+                    isOpen={isSidebarOpen}
+                    onToggle={handleSidebarToggle}
+                    frequentCategories={[
+                        { id: 'food', name: 'Продукты' },
+                        { id: 'transport', name: 'Транспорт' },
+                        { id: 'entertainment', name: 'Развлечения' }
+                    ]}
+                    activeGoals={[
+                        {
+                            id: 'vacation',
+                            name: 'Отпуск',
+                            currentAmount: 45000,
+                            targetAmount: 100000
+                        },
+                        {
+                            id: 'car',
+                            name: 'Новая машина',
+                            currentAmount: 300000,
+                            targetAmount: 1500000
+                        }
+                    ]}
+                />
+                <main className={styles.main}>
+                    {children}
+                </main>
+            </div>
         </div>
     );
 };

@@ -1,75 +1,221 @@
 .sidebar {
+    position: relative;
     width: 280px;
-    background-color: #f9fafb;
+    background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
-    transition: width 0.3s ease;
-    overflow: hidden;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    max-height: 100vh;
 
     &--closed {
-        width: 0;
-    }
-}
+        width: 60px;
 
-.nav {
-    padding: 16px 0;
-}
+        .sidebarContent {
+            opacity: 0;
+            visibility: hidden;
+        }
 
-.itemContainer {
-    margin-bottom: 4px;
-}
+        .toggleButton {
+            right: 12px;
+            background-color: #3b82f6;
+            border-color: #3b82f6;
 
-.item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 12px 24px;
-    background: none;
-    border: none;
-    color: #6b7280;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
+            &::before {
+                border-color: #ffffff;
+            }
 
-    &:hover {
-        background-color: #f3f4f6;
-        color: #374151;
-    }
-
-    &:focus {
-        outline: 2px solid #3b82f6;
-        outline-offset: -2px;
-    }
-
-    &--active {
-        background-color: #3b82f6;
-        color: white;
-
-        &:hover {
-            background-color: #2563eb;
-            color: white;
+            &:hover {
+                background-color: #2563eb;
+                border-color: #2563eb;
+            }
         }
     }
 }
 
-.icon {
+.sidebarContent {
+    padding: 20px;
+    padding-top: 60px; // Увеличиваем отступ сверху для кнопки
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.toggleButton {
+    position: absolute;
+    top: 12px;
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #3b82f6;
+    background-color: #3b82f6;
+    border-radius: 6px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+
+    &:hover {
+        background-color: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    }
+
+    &:active {
+        background-color: #1d4ed8;
+        border-color: #1d4ed8;
+        transform: scale(0.95);
+    }
+
+    &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border: solid #ffffff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(135deg);
+        margin-left: -4px;
+    }
 }
 
-.label {
+.sectionTitle {
     font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 12px;
 }
 
-.children {
-    margin-left: 24px;
-    border-left: 1px solid #e5e7eb;
-    margin-top: 4px;
-    padding-left: 16px;
+.periodFilters {
+    margin-bottom: 24px;
+
+    .filterButtons {
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background-color: #ffffff;
+            color: #374151;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: #f3f4f6;
+            }
+        }
+    }
+}
+
+.financialNavigation {
+    margin-bottom: 24px;
+
+    .navButton {
+        width: 100%;
+        padding: 10px 12px;
+        text-align: left;
+        border: none;
+        background: none;
+        color: #374151;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #f3f4f6;
+        }
+    }
+}
+
+.categories {
+    margin-bottom: 24px;
+
+    .categoryList {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .categoryButton {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background-color: #ffffff;
+        color: #374151;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #f3f4f6;
+        }
+    }
+}
+
+.quickActions {
+    margin-bottom: 24px;
+
+    button {
+        width: 100%;
+        margin-bottom: 8px;
+        padding: 10px;
+        background-color: #3b82f6;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #2563eb;
+        }
+    }
+}
+
+.activeGoals {
+    .goalProgress {
+        margin-bottom: 16px;
+    }
+
+    .goalInfo {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .goalName {
+        color: #374151;
+        font-weight: 500;
+    }
+
+    .goalAmount {
+        color: #6b7280;
+    }
+
+    .progressBar {
+        width: 100%;
+        height: 6px;
+        background-color: #e5e7eb;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .progressFill {
+        height: 100%;
+        background-color: #3b82f6;
+        border-radius: 3px;
+        transition: width 0.3s ease;
+    }
 }

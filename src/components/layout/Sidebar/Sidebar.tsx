@@ -1,58 +1,134 @@
 import clsx from 'clsx';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.scss';
 
-export interface SidebarItem {
+interface FinancialGoal {
     id: string;
-    label: string;
+    name: string;
+    currentAmount: number;
+    targetAmount: number;
+}
+
+interface ExpenseCategory {
+    id: string;
+    name: string;
     icon?: React.ReactNode;
-    href?: string;
-    onClick?: () => void;
-    children?: SidebarItem[];
 }
 
 export interface SidebarProps {
-    items: SidebarItem[];
     isOpen?: boolean;
-    activeItem?: string;
-    onItemClick?: (item: SidebarItem) => void;
+    onToggle?: () => void;
+    frequentCategories?: ExpenseCategory[];
+    activeGoals?: FinancialGoal[];
     className?: string;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
-    items,
     isOpen = true,
-    activeItem,
-    onItemClick,
+    onToggle,
+    frequentCategories = [],
+    activeGoals = [],
     className,
 }) => {
-    const handleItemClick = (item: SidebarItem) => {
-        onItemClick?.(item);
-    };
+    const navigate = useNavigate();
 
-    const renderItem = (item: SidebarItem) => {
-        const isActive = activeItem === item.id;
+    const financialSections = [
+        { id: 'income', label: 'Доходы', path: '/income' },
+        { id: 'expenses', label: 'Расходы', path: '/expenses' },
+        { id: 'investments', label: 'Инвестиции', path: '/investments' },
+        { id: 'savings', label: 'Сбережения', path: '/savings' },
+    ];
 
-        return (
-            <div key={item.id} className={styles.itemContainer}>
-                <button
-                    className={clsx(
-                        styles.item,
-                        { [styles['item--active']]: isActive }
-                    )}
-                    onClick={() => handleItemClick(item)}
-                >
-                    {item.icon && <span className={styles.icon}>{item.icon}</span>}
-                    <span className={styles.label}>{item.label}</span>
-                </button>
-                {item.children && (
-                    <div className={styles.children}>
-                        {item.children.map(renderItem)}
-                    </div>
-                )}
+    const renderToggleButton = () => (
+        <button
+            className={styles.toggleButton}
+            onClick={onToggle}
+            aria-label={isOpen ? 'Свернуть панель' : 'Развернуть панель'}
+        >
+            {isOpen ? '←' : '→'}
+        </button>
+    );
+
+    const renderPeriodFilters = () => (
+        <div className={styles.periodFilters}>
+            <h3 className={styles.sectionTitle}>Период</h3>
+            <div className={styles.filterButtons}>
+                <button>Месяц</button>
+                <button>Квартал</button>
+                <button>Год</button>
             </div>
-        );
-    };
+        </div>
+    );
+
+    const renderFrequentCategories = () => (
+        <div className={styles.categories}>
+            <h3 className={styles.sectionTitle}>Частые категории расходов</h3>
+            <div className={styles.categoryList}>
+                {frequentCategories.map(category => (
+                    <button
+                        key={category.id}
+                        className={styles.categoryButton}
+                        onClick={() => navigate(`/expenses/${category.id}`)}
+                    >
+                        {category.icon}
+                        {category.name}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+
+    const renderQuickActions = () => (
+        <div className={styles.quickActions}>
+            <h3 className={styles.sectionTitle}>Быстрые действия</h3>
+            <button onClick={() => navigate('/transactions/new')}>
+                Добавить транзакцию
+            </button>
+            <button onClick={() => navigate('/goals/new')}>
+                Создать цель
+            </button>
+        </div>
+    );
+
+    const renderActiveGoals = () => (
+        <div className={styles.activeGoals}>
+            <h3 className={styles.sectionTitle}>Активные цели</h3>
+            {activeGoals.map(goal => (
+                <div key={goal.id} className={styles.goalProgress}>
+                    <div className={styles.goalInfo}>
+                        <span className={styles.goalName}>{goal.name}</span>
+                        <span className={styles.goalAmount}>
+                            {goal.currentAmount} / {goal.targetAmount} ₽
+                        </span>
+                    </div>
+                    <div className={styles.progressBar}>
+                        <div
+                            className={styles.progressFill}
+                            style={{
+                                width: `${(goal.currentAmount / goal.targetAmount) * 100}%`
+                            }}
+                        />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+
+    const renderFinancialNavigation = () => (
+        <nav className={styles.financialNavigation}>
+            <h3 className={styles.sectionTitle}>Разделы</h3>
+            {financialSections.map(section => (
+                <button
+                    key={section.id}
+                    className={styles.navButton}
+                    onClick={() => navigate(section.path)}
+                >
+                    {section.label}
+                </button>
+            ))}
+        </nav>
+    );
 
     return (
         <aside
@@ -62,9 +138,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 className
             )}
         >
-            <nav className={styles.nav}>
-                {items.map(renderItem)}
-            </nav>
+            {renderToggleButton()}
+            <div className={styles.sidebarContent}>
+                {renderPeriodFilters()}
+                {renderFinancialNavigation()}
+                {renderFrequentCategories()}
+                {renderQuickActions()}
+                {renderActiveGoals()}
+            </div>
         </aside>
     );
 };
