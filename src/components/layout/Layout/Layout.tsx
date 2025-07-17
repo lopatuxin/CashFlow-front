@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { NavigationItem, Notification, QuickAction } from '../Header/Header.types';
 import { Sidebar } from '../Sidebar';
@@ -64,6 +65,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     {children}
                 </main>
             </div>
+            <Footer
+                version="1.0.0"
+                systemStatus="Система работает стабильно"
+            />
         </div>
     );
 };
