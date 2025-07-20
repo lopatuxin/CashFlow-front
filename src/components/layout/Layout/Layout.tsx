@@ -14,6 +14,29 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
+    // Моковые данные для быстрых действий
+    const quickActions: QuickAction[] = [
+        {
+            id: 'add_income',
+            label: 'Добавить доход',
+            icon: 'add_income',
+            action: () => console.log('Add income'),
+            variant: 'primary'
+        },
+        {
+            id: 'add_expense',
+            label: 'Добавить расход',
+            icon: 'add_expense',
+            action: () => console.log('Add expense')
+        },
+        {
+            id: 'add_goal',
+            label: 'Добавить цель',
+            icon: 'add_income', // Используем такую же иконку как у верхних кнопок (+)
+            action: () => console.log('Add goal')
+        }
+    ];
+
     const handleSidebarToggle = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -35,12 +58,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <Header
                 onNavigationClick={handleNavigationClick}
                 onNotificationClick={handleNotificationClick}
-                onQuickAction={handleQuickAction}
+            // Убираем quickActions из Header
             />
             <div className={styles.content}>
                 <Sidebar
                     isOpen={isSidebarOpen}
                     onToggle={handleSidebarToggle}
+                    quickActions={quickActions}
+                    onQuickAction={handleQuickAction}
                 />
                 <main className={styles.main}>
                     {children}

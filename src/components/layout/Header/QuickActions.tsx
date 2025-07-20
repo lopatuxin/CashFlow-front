@@ -6,12 +6,14 @@ interface QuickActionsProps {
     actions: QuickAction[];
     onActionClick: (action: QuickAction) => void;
     className?: string;
+    isSidebar?: boolean;
 }
 
 export const QuickActions: React.FC<QuickActionsProps> = ({
     actions,
     onActionClick,
-    className
+    className,
+    isSidebar = false
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -79,11 +81,20 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
         );
     };
 
+    // Применяем дополнительные классы для боковой панели
+    const buttonClassName = isSidebar
+        ? `${styles.quickActionsButton} ${styles.quickActionsSidebarButton}`
+        : styles.quickActionsButton;
+
+    const dropdownClassName = isSidebar
+        ? `${styles.quickActionsDropdown} ${styles.quickActionsSidebarDropdown}`
+        : styles.quickActionsDropdown;
+
     return (
         <div className={`${styles.quickActionsContainer} ${className || ''}`}>
             <button
                 ref={buttonRef}
-                className={styles.quickActionsButton}
+                className={buttonClassName}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Быстрые действия"
                 aria-expanded={isOpen}
@@ -95,7 +106,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
             </button>
 
             {isOpen && (
-                <div ref={dropdownRef} className={styles.quickActionsDropdown}>
+                <div ref={dropdownRef} className={dropdownClassName}>
                     <div className={styles.quickActionsHeader}>
                         <h3>Быстрые действия</h3>
                     </div>

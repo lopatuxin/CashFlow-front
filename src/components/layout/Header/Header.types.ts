@@ -37,11 +37,9 @@ export interface QuickAction {
 export interface HeaderProps {
     user?: User;
     notifications?: Notification[];
-    quickActions?: QuickAction[];
     onMenuToggle?: () => void;
     onNotificationClick?: (notification: Notification) => void;
     onUserMenuToggle?: () => void;
-    onQuickAction?: (action: QuickAction) => void;
     onNavigationClick?: (item: NavigationItem) => void;
     className?: string;
     isMobile?: boolean;
@@ -50,5 +48,4 @@ export interface HeaderProps {
 export interface HeaderState {
     isUserMenuOpen: boolean;
     isNotificationsOpen: boolean;
-    isQuickActionsOpen: boolean;
 }

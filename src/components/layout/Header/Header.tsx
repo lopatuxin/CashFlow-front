@@ -2,17 +2,15 @@ import clsx from 'clsx';
 import React, { useState } from 'react';
 import { BalanceDisplay } from './BalanceDisplay';
 import styles from './Header.module.scss';
-import { HeaderProps, NavigationItem, Notification, QuickAction, User } from './Header.types';
+import { HeaderProps, NavigationItem, Notification, User } from './Header.types';
 import { Logo } from './Logo';
 import { Navigation } from './Navigation';
 import { NotificationsButton } from './NotificationsButton';
-import { QuickActions } from './QuickActions';
 import { UserMenu } from './UserMenu';
 
 // Моковые данные для демонстрации
 const defaultNavigationItems: NavigationItem[] = [
-    { id: 'dashboard', label: 'Дашборд', path: '/dashboard', icon: 'dashboard', isActive: true },
-    { id: 'budget', label: 'Бюджет', path: '/budget', icon: 'budget' },
+    { id: 'budget', label: 'Бюджет', path: '/budget', icon: 'budget', isActive: true },
     { id: 'transactions', label: 'Транзакции', path: '/transactions', icon: 'transactions' },
     { id: 'analytics', label: 'Аналитика', path: '/analytics', icon: 'analytics' },
     { id: 'investments', label: 'Инвестиции', path: '/investments', icon: 'investments' },
@@ -59,42 +57,12 @@ const defaultNotifications: Notification[] = [
     }
 ];
 
-const defaultQuickActions: QuickAction[] = [
-    {
-        id: 'add_income',
-        label: 'Добавить доход',
-        icon: 'add_income',
-        action: () => console.log('Add income'),
-        variant: 'primary'
-    },
-    {
-        id: 'add_expense',
-        label: 'Добавить расход',
-        icon: 'add_expense',
-        action: () => console.log('Add expense')
-    },
-    {
-        id: 'add_transaction',
-        label: 'Новая транзакция',
-        icon: 'add_transaction',
-        action: () => console.log('Add transaction')
-    },
-    {
-        id: 'create_goal',
-        label: 'Создать цель',
-        icon: 'create_goal',
-        action: () => console.log('Create goal')
-    }
-];
-
 export const Header: React.FC<HeaderProps> = ({
     user = defaultUser,
     notifications = defaultNotifications,
-    quickActions = defaultQuickActions,
     onMenuToggle,
     onNotificationClick,
     onUserMenuToggle,
-    onQuickAction,
     onNavigationClick,
     className,
     isMobile = false
@@ -117,11 +85,6 @@ export const Header: React.FC<HeaderProps> = ({
 
     const handleNotificationClick = (notification: Notification) => {
         onNotificationClick?.(notification);
-    };
-
-    const handleQuickAction = (action: QuickAction) => {
-        onQuickAction?.(action);
-        action.action();
     };
 
     const handleUserMenuToggle = () => {
@@ -184,12 +147,6 @@ export const Header: React.FC<HeaderProps> = ({
                     notifications={notifications}
                     onNotificationClick={handleNotificationClick}
                     className={styles.headerNotifications}
-                />
-
-                <QuickActions
-                    actions={quickActions}
-                    onActionClick={handleQuickAction}
-                    className={styles.headerQuickActions}
                 />
 
                 <UserMenu

@@ -155,24 +155,32 @@
 
 .quickActions {
     margin-bottom: 24px;
+}
 
+.sidebarQuickActions {
+
+    // Переопределяем стили для кнопки в боковой панели
     button {
         width: 100%;
-        margin-bottom: 8px;
-        padding: 10px;
-        background-color: #3b82f6;
-        color: #ffffff;
-        border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
+        justify-content: center;
+    }
 
-        &:hover {
-            background-color: #2563eb;
+    // Переопределяем позицию выпадающего меню
+    div[class*="quickActionsDropdown"] {
+        right: auto;
+        left: 0;
+
+        // Если боковая панель свернута
+        .sidebar--closed & {
+            left: 60px;
         }
     }
+}
+
+// Удаляем неиспользуемые стили
+.primaryAction,
+.secondaryAction {
+    display: none;
 }
 
 .activeGoals {
