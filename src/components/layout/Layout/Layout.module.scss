@@ -11,6 +11,8 @@
     display: flex;
     flex: 1;
     margin-top: 70px; // Отступ для фиксированного header
+    padding-left: 10px; // Отступ слева для контента
+    padding-right: 10px; // Отступ справа для контента
 }
 
 .main {
@@ -20,10 +22,13 @@
     min-width: 0;
     padding: 24px;
     margin-bottom: 20px; // Дополнительный отступ от футера
+    margin-left: 10px; // Отступ между сайдбаром и основным контентом
+    border-radius: 8px 0 0 0; // Скругляем верхний левый угол
 
     @media (max-width: 768px) {
         margin-top: 60px;
         padding: 16px;
         margin-bottom: 0; // На мобильных футер не фиксированный
+        margin-left: 0; // Убираем отступ на мобильных
     }
 }

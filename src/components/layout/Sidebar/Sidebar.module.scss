@@ -3,9 +3,13 @@
     width: 280px;
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     overflow-y: auto;
-    max-height: 100vh;
+    max-height: calc(100vh - 80px); // Уменьшаем высоту для отступа
+    z-index: 900;
+    margin-top: 10px; // Добавляем отступ сверху
+    border-radius: 8px 0 0 0; // Скругляем верхний левый угол
 
     &--closed {
         width: 60px;
@@ -205,5 +209,48 @@
         background-color: #3b82f6;
         border-radius: 3px;
         transition: width 0.3s ease;
+    }
+}
+
+// Темная тема
+@media (prefers-color-scheme: dark) {
+    .sidebar {
+        background-color: #1f2937;
+        border-right-color: #374151;
+    }
+
+    .toggleButton {
+        background-color: #374151;
+        border-color: #4b5563;
+        color: #d1d5db;
+
+        &:hover {
+            background-color: #4b5563;
+            color: #93c5fd;
+            border-color: #3b82f6;
+        }
+    }
+
+    .sectionTitle {
+        color: #d1d5db;
+    }
+
+    .navigationButton {
+        color: #d1d5db;
+
+        &:hover {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+    }
+
+    .navigationButtonActive {
+        background-color: #1e40af;
+        color: #93c5fd;
+
+        &:hover {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+        }
     }
 }
