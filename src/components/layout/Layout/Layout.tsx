@@ -66,6 +66,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     onToggle={handleSidebarToggle}
                     quickActions={quickActions}
                     onQuickAction={handleQuickAction}
+                    onNavigationClick={handleNavigationClick}
                 />
                 <main className={styles.main}>
                     {children}

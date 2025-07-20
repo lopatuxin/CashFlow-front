@@ -220,6 +220,87 @@
     }
 }
 
+// Стили для навигации в боковой панели
+.sidebarNavigation {
+    margin-bottom: 24px;
+}
+
+.sidebarNavigationList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebarNavigationItem {
+    margin-bottom: 8px;
+}
+
+.sidebarNavigationButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
+
+    &:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+
+    &:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+
+    &.sidebarNavigationButtonActive {
+        background-color: #eff6ff;
+        color: #1d4ed8;
+
+        &:hover {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        svg {
+            color: #1d4ed8;
+        }
+    }
+
+    svg {
+        flex-shrink: 0;
+        color: #6b7280;
+    }
+}
+
+.sidebarNavigationLabel {
+    white-space: nowrap;
+}
+
+.sidebarNavigationBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 10px;
+    line-height: 1;
+}
+
 // Темная тема
 @media (prefers-color-scheme: dark) {
     .sidebar {
@@ -243,22 +324,30 @@
         color: #d1d5db;
     }
 
-    .navigationButton {
+    .sidebarNavigationButton {
         color: #d1d5db;
 
         &:hover {
             background-color: #374151;
             color: #f9fafb;
         }
-    }
 
-    .navigationButtonActive {
-        background-color: #1e40af;
-        color: #93c5fd;
-
-        &:hover {
-            background-color: #1e3a8a;
+        &.sidebarNavigationButtonActive {
+            background-color: #1e40af;
             color: #93c5fd;
+
+            &:hover {
+                background-color: #1e3a8a;
+                color: #93c5fd;
+            }
+
+            svg {
+                color: #93c5fd;
+            }
+        }
+
+        svg {
+            color: #9ca3af;
         }
     }
 }

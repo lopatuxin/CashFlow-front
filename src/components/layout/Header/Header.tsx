@@ -10,13 +10,9 @@ import { UserMenu } from './UserMenu';
 
 // Моковые данные для демонстрации
 const defaultNavigationItems: NavigationItem[] = [
-    { id: 'budget', label: 'Бюджет', path: '/budget', icon: 'budget', isActive: true },
-    { id: 'transactions', label: 'Транзакции', path: '/transactions', icon: 'transactions' },
+    { id: 'transactions', label: 'Транзакции', path: '/transactions', icon: 'transactions', isActive: true },
     { id: 'analytics', label: 'Аналитика', path: '/analytics', icon: 'analytics' },
-    { id: 'investments', label: 'Инвестиции', path: '/investments', icon: 'investments' },
-    { id: 'accounts', label: 'Счета', path: '/accounts', icon: 'accounts' },
-    { id: 'goals', label: 'Цели', path: '/goals', icon: 'goals' },
-    { id: 'settings', label: 'Настройки', path: '/settings', icon: 'settings' }
+    { id: 'accounts', label: 'Счета', path: '/accounts', icon: 'accounts' }
 ];
 
 const defaultUser: User = {
