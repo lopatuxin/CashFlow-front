@@ -40,7 +40,7 @@
 .toggleButton {
     position: absolute;
     top: 12px;
-    right: -16px;
+    right: 12px; // Изменено с -16px на 12px, чтобы кнопка не выходила за пределы
     width: 32px;
     height: 32px;
     border: 2px solid #e5e7eb;
@@ -54,7 +54,7 @@
     z-index: 10;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     color: #6b7280;
-    font-size: 14px;
+    font-size: 18px; // Увеличено с 14px до 18px
 
     &:hover {
         background-color: #f3f4f6;

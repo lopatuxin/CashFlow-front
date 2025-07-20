@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './Sidebar.module.scss';
 
 export interface SidebarProps {
@@ -22,7 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={onToggle}
                 aria-label={isOpen ? 'Свернуть панель' : 'Развернуть панель'}
             >
-                {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
+                {isOpen ? '←' : '→'}
             </button>
             <div className={styles.sidebarContent}>
                 {/* Содержимое бокового меню */}
