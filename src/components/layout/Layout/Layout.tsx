@@ -41,25 +41,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Sidebar
                     isOpen={isSidebarOpen}
                     onToggle={handleSidebarToggle}
-                    frequentCategories={[
-                        { id: 'food', name: 'Продукты' },
-                        { id: 'transport', name: 'Транспорт' },
-                        { id: 'entertainment', name: 'Развлечения' }
-                    ]}
-                    activeGoals={[
-                        {
-                            id: 'vacation',
-                            name: 'Отпуск',
-                            currentAmount: 45000,
-                            targetAmount: 100000
-                        },
-                        {
-                            id: 'car',
-                            name: 'Новая машина',
-                            currentAmount: 300000,
-                            targetAmount: 1500000
-                        }
-                    ]}
                 />
                 <main className={styles.main}>
                     {children}
