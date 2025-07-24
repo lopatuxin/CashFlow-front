@@ -9,11 +9,7 @@ import { NotificationsButton } from './NotificationsButton';
 import { UserMenu } from './UserMenu';
 
 // Моковые данные для демонстрации
-const defaultNavigationItems: NavigationItem[] = [
-    { id: 'transactions', label: 'Транзакции', path: '/transactions', icon: 'transactions', isActive: true },
-    { id: 'analytics', label: 'Аналитика', path: '/analytics', icon: 'analytics' },
-    { id: 'accounts', label: 'Счета', path: '/accounts', icon: 'accounts' }
-];
+const defaultNavigationItems: NavigationItem[] = [];
 
 const defaultUser: User = {
     id: '1',
